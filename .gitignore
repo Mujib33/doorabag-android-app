@@ -1,0 +1,27 @@
+# --- EXTRA IMPORTANT (to avoid huge repo) ---
+# Android Gradle
+android/.gradle/
+android/local.properties
+
+# iOS Pods
+ios/Pods/
+ios/.symlinks/
+
+# Desktop build outputs
+windows/build/
+linux/build/
+macos/build/
+
+# Dart tool + build (extra safety)
+.dart_tool/
+build/
+
+# Artifacts
+*.apk
+*.aab
+*.ipa
+*.zip
+
+# Firebase config (optional - only if you don't want to expose)
+# android/app/google-services.json
+# ios/Runner/GoogleService-Info.plist

@@ -1,0 +1,101 @@
+plugins {
+    id "com.android.application"
+    id "org.jetbrains.kotlin.android"
+    id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services"
+}
+
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file("key.properties")
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+
+android {
+    namespace = "com.doorabag.app"
+    compileSdk = flutter.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.doorabag.app"
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    compileOptions {
+        // 🔥 Java 17 supported
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+
+        // 🔥 REQUIRED for flutter_local_notifications
+        coreLibraryDesugaringEnabled true
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+        signingConfigs {
+        release {
+            if (keystorePropertiesFile.exists()) {
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+                storeFile file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+            }
+        }
+    }
+
+
+    buildTypes {
+    release {
+        signingConfig signingConfigs.release
+        // ✅ Release shrink
+        minifyEnabled true
+        shrinkResources true
+
+        // Flutter default proguard rules
+        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+                'proguard-rules.pro'
+    }
+}
+
+}
+
+flutter {
+    source = "../.."
+}
+
+// ---- Ensure Flutter expected output paths always exist & APK copied ----
+afterEvaluate {
+    def flutterOut = new File("$rootDir/../build/app/outputs/flutter-apk")
+    flutterOut.mkdirs()
+
+    tasks.matching { it.name == "assembleDebug" }.all {
+        doLast {
+            copy {
+                from("$buildDir/outputs/apk/debug/app-debug.apk")
+                into(flutterOut)
+                rename { "app-debug.apk" }
+            }
+        }
+    }
+
+    tasks.matching { it.name == "assembleRelease" }.all {
+        doLast {
+            copy {
+                from("$buildDir/outputs/apk/release/app-release.apk")
+                into(flutterOut)
+                rename { "app-release.apk" }
+            }
+        }
+    }
+}
+
+dependencies {
+    // 🔥 REQUIRED for flutter_local_notifications
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.4'
+
+}

@@ -1,0 +1,2 @@
+C:/Users/user/doora_app/android/app/.cxx/debug/3r185z5r/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/user/doora_app/android/app/.cxx/debug/3r185z5r/armeabi-v7a/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,31 @@
+// ----- pluginManagement sabse pehle likhna hai -----
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+
+    // Flutter tools include karo
+    def localPropertiesFile = new File(rootDir, "local.properties")
+    def properties = new Properties()
+    if (localPropertiesFile.exists()) {
+        localPropertiesFile.withInputStream { stream -> properties.load(stream) }
+    }
+    def flutterSdkPath = properties.getProperty("flutter.sdk")
+    assert flutterSdkPath != null : "flutter.sdk not set in local.properties"
+
+    includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
+}
+
+// ----- plugins block pluginManagement ke baad hi aayega -----
+plugins {
+    id "dev.flutter.flutter-plugin-loader" version "1.0.0"
+    // Optional: agar chaho to globally pin kar sakte ho
+    id "com.android.application" version "8.6.0" apply false
+    id "org.jetbrains.kotlin.android" version "2.1.0" apply false
+    id "com.google.gms.google-services" version "4.4.2" apply false
+}
+
+// ----- sabse last me modules include karna hai -----
+include(":app")

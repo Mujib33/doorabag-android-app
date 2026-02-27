@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Native splash: Only solid DooraBag blue (NO LOGO) -->
+    <style name="LaunchTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowBackground">@color/doora_splash_blue</item>
+    </style>
+
+    <!-- Background while Flutter initializes -->
+    <style name="NormalTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowBackground">@color/doora_splash_blue</item>
+    </style>
+
+</resources>

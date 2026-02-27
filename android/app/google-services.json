@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "899065904814",
+    "project_id": "doorabagauth",
+    "storage_bucket": "doorabagauth.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899065904814:android:6b045bdc8b734dea69b73f",
+        "android_client_info": {
+          "package_name": "com.doorabag.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDP0SGUD26uBAZvqscjMsbf4PxTehc_5XE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
